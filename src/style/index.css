@@ -1,3 +1,79 @@
-.navbar{
-    background-color: green;
+body{background-color: #2e333d}
+
+
+body h1{
+    text-align: center;
+    margin-top: 25px;
+    font-size: 45px;
+    animation: fadeIn 1s ease-out;
+    margin-bottom: 0;
 }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card{
+    animation: fadeIn 0.2s ease-out;
+}
+
+.card button {
+    border: 0;
+    margin: 5px 10px;
+}
+
+.card-footer{
+    display: flex;
+    flex-flow: row nowrap;
+    background-color: white;
+    border: 0;
+    justify-content: flex-end;
+}
+
+.product-image {
+    display: block;
+    margin: 0 auto; /* Center the image horizontally */
+}
+
+.card li{
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 0 -25px;
+}
+
+.spec-key {
+    font-size: 0.9em; /* Adjust the size as needed */
+    font-weight: bold;
+}
+
+.spec-value {
+    font-size: 0.8em; /* Adjust the size as needed */
+}
+
+/* Optional: Additional custom styling */
+.form-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+button:hover{
+    color: black; background-color: white;
+}
+#ourStore{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+}
+#ourStore img{ width: 100%; filter: blur(10px)}
