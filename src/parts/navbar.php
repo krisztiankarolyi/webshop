@@ -26,7 +26,7 @@
                 Cart (<?php
                 session_start();
                 if(!isset($_SESSION['cartTotal'])) $_SESSION['cartTotal'] = 0;
-                echo $_SESSION['cartTotal'];
+                echo "<span id='cartTotal'> " . $_SESSION['cartTotal'] . "</span>";
                 ?>)
             </a>
 

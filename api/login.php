@@ -25,3 +25,6 @@ $db = $database->getConnection();
         echo json_encode($response);
 
     }
+    else{
+        echo json_encode(["status" => "error", "message" => "only POST method is accepted"]);
+    }

@@ -5,6 +5,7 @@ function loadPage(page) {
         if (this.status === 200) {
             document.getElementById('content').innerHTML = this.responseText;
             //history.pushState(null, '', page);
+
             if(page === 'products'){
                 fetchAndDisplayProducts().then(() => {
                     console.log('Products were loaded');
@@ -27,6 +28,7 @@ function loadPage(page) {
                         console.log(filter)
                     });
                 }
+
             }
 
 

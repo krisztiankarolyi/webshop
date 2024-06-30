@@ -1,6 +1,2 @@
-<?php
-require_once ('../models/cart.php');
-
-
-$cartContents = getCart();
-var_dump($cartContents); // Check if this shows the correct cart items
+<button onclick="fetchCart()">Reload</button>
+<div id="cart-content"></div>
