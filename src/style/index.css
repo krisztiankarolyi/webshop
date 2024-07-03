@@ -1,5 +1,6 @@
-body{background-color: #2e333d}
-
+body{
+    background-color: #2e333d;
+}
 
 body h1{
     text-align: center;
@@ -77,3 +78,10 @@ button:hover{
     width: 100vw;
 }
 #ourStore img{ width: 100%; filter: blur(10px)}
+
+
+
+.remove-button {
+
+  margin-top: 10px;
+}

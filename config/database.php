@@ -1,5 +1,5 @@
 <?php
-require '../vendor/autoload.php'; // MongoDB PHP Library
+require_once __DIR__.'/../vendor/autoload.php'; // MongoDB PHP Library
 
 class Database {
     private $db;

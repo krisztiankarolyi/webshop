@@ -139,5 +139,20 @@ class Product {
         $result = $this->collection->deleteOne(['_id' => new MongoDB\BSON\ObjectId($id)]);
         return $result->getDeletedCount() > 0;
     }
+
+    public function readOne($id) {
+        // Ellenőrizzük, hogy az ID egy érvényes MongoDB ObjectId formátumú-e
+        try {
+            $objectId = new MongoDB\BSON\ObjectId($id);
+        } catch (Exception $e) {
+            // Ha az ID nem érvényes, hibával térünk vissza
+            return null;
+        }
+
+        // Keresés az azonosító alapján
+        return $this->collection->findOne(['_id' => $objectId]);
+
+        // Visszatérünk az eredménnyel
+    }
 }
 ?>

@@ -6,6 +6,8 @@ function loadPage(page) {
             document.getElementById('content').innerHTML = this.responseText;
             //history.pushState(null, '', page);
 
+            if(page==='cart'){fetchCart();}
+
             if(page === 'products'){
                 fetchAndDisplayProducts().then(() => {
                     console.log('Products were loaded');
@@ -40,7 +42,7 @@ function loadPage(page) {
 
 async function fetchAndDisplayProducts(filter = {}) {
     try {
-        const url = 'http://localhost/webshop/api/products';
+        const url = `${config.apiUrl}/products`;
 
         // Szűrő objektum létrehozása a nem üres értékekkel
         const filteredFilter = {};

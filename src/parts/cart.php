@@ -1,2 +1,4 @@
-<button onclick="fetchCart()">Reload</button>
-<div id="cart-content"></div>
+
+<div id="cart-container" class="columns is-multiline">
+
+</div>

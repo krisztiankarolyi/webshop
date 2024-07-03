@@ -4,7 +4,7 @@ function login(){
 
     // AJAX request to login.php
     const xhr = new XMLHttpRequest();
-    const url = 'http://localhost/webshop/api/login';
+    const url = `${config.apiUrl}/login`;
     xhr.open('POST', url, true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 

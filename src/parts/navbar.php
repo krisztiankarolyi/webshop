@@ -1,4 +1,4 @@
-<nav class="navbar has-background-black" role="navigation" aria-label="main navigation">
+<nav class="navbar has-background-black  is-fixed-top" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="#">
             <img src="../src/img/logo.png" width="100px" ">

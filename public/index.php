@@ -6,7 +6,7 @@
     </head>
     <body>
     <?php include '../src/parts/navbar.php'; ?>
-
+    <br> <br> <br>
     <div id="content">
         <?php
 
@@ -21,7 +21,7 @@
         include "../src/parts/". $page . '.php';
         ?>
     </div>
-
+    <script src="../config.js" defer></script>
     <script src="../src/js/navbar.js"></script>
     <script src="../src/js/app.js"></script>
     <script src="../src/js/login.js"></script>

@@ -7,7 +7,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $productId = $_POST['product_id'];
         $quantity = $_POST['quantity'];
         addToCart($productId, $quantity);
-        echo json_encode(['status' => 'success', 'message' => 'Product added to cart', 'id' => $productId, 'quantity' => $quantity]);
         }
     else{
         echo json_encode(["status" => "failed", "message" => "missing product_id and/or quantity"]);
@@ -34,7 +33,16 @@ function addToCart($productId, $quantity)
     }
 
     // Kosárban lévő termékek darabszámának összesítése
-    $_SESSION['cartTotal'] = array_sum($_SESSION['cart']);
+    $cartCount = getCartCount();
+    $_SESSION['cartTotal'] = getCartCount();
 
-    return json_encode(["message" => "Item $productId addedd successfully"]);
+    echo json_encode(['status' => 'success', 'message' => 'Product added to cart', 'cartCount' => $cartCount]);
+}
+
+function getCartCount() {
+    if (!isset($_SESSION['cart'])) {
+        return 0;
+    }
+
+    return array_sum($_SESSION['cart']);
 }
