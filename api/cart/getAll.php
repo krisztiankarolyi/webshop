@@ -22,8 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         foreach ($productIds as $id) {
             $productDetail = $product->readOne($id);
             if ($productDetail) {
+                $productDetail['id'] = $productDetail['_id'].'$oid';
                 $productDetail['_quantity'] = $cart[$id];
-                $cartItems[] = $productDetail; // A tömbbe való push helyett []-val adunk hozzá elemet
+                unset($productDetail['_id']);
+                $cartItems[] = $productDetail;
             }
         }
         echo json_encode($cartItems); // Az összes terméket visszaadjuk JSON formátumban

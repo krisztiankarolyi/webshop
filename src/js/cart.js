@@ -15,54 +15,67 @@ function  fetchCart(){
 
 function displayCart(cartItems) {
     var cartContainer = document.getElementById('cart-container');
-    cartContainer.innerHTML = ''; // Töröljük az előző tartalmat
+    cartContainer.innerHTML = ''; // Clear previous content
 
     cartItems.forEach(function(cartItem) {
+        var productId = cartItem.id; // Assuming there's an ID field
         var productName = cartItem.name;
         var productPrice = cartItem.price;
-        var productQuantity = cartItem._quantity;
+        var productQuantity = cartItem._quantity; // Assuming the correct field name
         var productImgUrl = cartItem.img_url;
 
-        // Kártya létrehozása Bulma stílusokkal
+        // Create card with Bulma styles
         var productCard = `
-                    <div class="column is-one-quarter">
-                        <div class="product-card">
-                            <div class="card-content">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <figure class="image is-128x128">
-                                            <img src="${productImgUrl}" alt="${productName}" class="product-image">
-                                        </figure>
-                                    </div>
-                                    <div class="media-content">
-                                        <h5 class="title is-5">${productName}</h5>
-                                        <p>Price: ${productPrice} USD</p>
-                                        <p>Quantity: ${productQuantity}</p>
-                                        <button class="button is-danger is-small remove-button">Remove</button>
-                                    </div>
-                                </div>
+            <div class="column is-one-quarter">
+                <div class="product-card">
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-left">
+                                <figure class="image is-128x128">
+                                    <img src="${productImgUrl}" alt="${productName}" class="product-image">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <h5 class="title is-5">${productName}</h5>
+                                <p>Price: ${productPrice} USD</p>
+                                <p>
+                                    Quantity: 
+                                    <input type="hidden" class="hidden-input" value="${productId}">
+                                    <button class="button is-small quantity-button" data-product-id="${productId}" onclick="addToCart(null, '${productId}',-1)">-</button>
+                                    <span class="quantity">${productQuantity}</span>
+                                    <button class="button is-small quantity-button" data-product-id="${productId}" onclick="addToCart(null, '${productId}', 1) ">+</button>
+                                </p>                         
                             </div>
                         </div>
                     </div>
-                `;
+                </div>
+            </div>
+        `;
 
-        // Hozzáadjuk a kártyát a kosár tartalmát tartalmazó elemhez
+        // Append the card to the cart container
         cartContainer.innerHTML += productCard;
     });
 }
 
 
-function addToCart(buttonElement) {
-    const productCard = buttonElement.closest('.card');
-    const hiddenInput = productCard.querySelector('.hidden-input');
-    const productId = hiddenInput.value;
+function addToCart(buttonElement = null, id=null,  quantity=1) {
+    var productId = 0;
+
+    if(buttonElement != null){
+        const productCard = buttonElement.closest('.card');
+        const hiddenInput = productCard.querySelector('.hidden-input');
+        productId = hiddenInput.value;
+    }
+    else if (id != null){
+        productId = id.trim();
+    }
 
     fetch(`${config.apiUrl}/cart/add`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: `product_id=${encodeURIComponent(productId)}&quantity=1`
+        body: `product_id=${encodeURIComponent(productId)}&quantity=${quantity}`
     })
         .then(response => response.json())
         .then(data => {
@@ -72,6 +85,8 @@ function addToCart(buttonElement) {
         .catch((error) => {
             console.error('Error:', error);
         });
+
+    fetchCart();
 }
 
 function updateCartCount(count) {

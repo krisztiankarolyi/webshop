@@ -87,7 +87,7 @@
 
 <template id="productTemplate">
     <div class="column is-one-third">
-        <div class="card has-background-white">
+        <div class="card has-background-dark has-text-light">
             <div class="card-image">
                 <figure class="image is-4by3">
                     <img src="" alt="Product Image">
@@ -102,7 +102,7 @@
                     <p class="has-text-success"><strong>Price:</strong>  </p>
                 </div>
             </div>
-            <div class="card-footer">
+            <div class="card-footer has-background-dark">
                 <button class="button has-background-info-50 add-to-cart" onclick="addToCart(this)">Add to cart</button>
              </div>
         </div>
